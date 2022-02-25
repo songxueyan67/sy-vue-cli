@@ -1,8 +1,6 @@
 <template>
-  <div>
-    登录
-  </div>
+  <div>登录</div>
 </template>
 
-<script lang="ts" setup name="Login">
+<script lang="ts" setup>
 </script>

@@ -3,14 +3,16 @@
 </template>
 
 <script lang='ts' setup>
+import { Type } from "@/api/captcha";
 import getCaptch from "@/api/captcha";
 const codeImage = ref("");
 const randomStr = ref("");
 
-// 切换验证码
+// 切换图形验证码
 const handleCaptch = () => {
-  getCaptch().then((res) => {
-    codeImage.value = res.data.code;
+  getCaptch().then(({ data }) => {
+    codeImage.value = data.code;
+    randomStr.value = data.randomStr;
   });
 };
 
@@ -19,7 +21,6 @@ onMounted(() => {
 });
 
 defineExpose({ randomStr, handleCaptch });
-
 </script>
 <style scoped lang='scss'>
 .captch-img {
