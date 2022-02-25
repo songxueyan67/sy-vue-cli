@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import styleImport from 'vite-plugin-style-import';
+import AutoImport from 'unplugin-auto-import/vite'
 import Component from 'unplugin-vue-components/vite'
 import {
   AntDesignVueResolver,
@@ -12,7 +13,7 @@ export default defineConfig({
     vue(),
     Component({
       dts: false,  // 如果安装了 `typescript`，则默认启用
-      extensions: [ 'vue', 'ts' ], //
+      extensions: ['vue', 'ts'], //
       deep: true,
       resolvers: [AntDesignVueResolver()]
     }),
@@ -26,6 +27,10 @@ export default defineConfig({
         },
       }]
     }),
+    AutoImport({
+      imports: ['vue', 'vue-router'],
+      dts: 'types/auto-imports.d.ts'
+    })
   ],
   resolve: {
     alias: {
