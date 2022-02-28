@@ -1,16 +1,24 @@
 import { RouteRecordRaw } from 'vue-router';
+import Home from './home'
 
-const routes: RouteRecordRaw[] = [
+const frameIn: RouteRecordRaw = {
+  path: '/',
+  redirect: '/home',
+  component: () => import('@/views/Home.vue'),
+  meta: { title: '首页' },
+  children: [Home]
+}
+
+const frameOut = [
   {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/system/Login.vue'),
+    meta: {
+      title: '登录'
+    }
   },
-  {
-    path: '/home',
-    name: 'Home',
-    component: () => import('@/views/Home.vue'),
-  }
 ]
 
-export default routes
+
+export default [frameIn, ...frameOut]

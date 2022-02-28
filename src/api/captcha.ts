@@ -6,11 +6,14 @@ interface Params {
 }
 
 interface Result {
-  code: string,
+  randomStr: string;
+  code: string;
+  expireTime: number;
 }
 
+
 export default function getCaptcha(type: Type = 'image', params?: Params) {
-  return request({
+  return request<Result>({
     method: 'get',
     url: `/code/${type}`,
     params,

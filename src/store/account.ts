@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
-import Login from '@/api/account'
+import Login, { LoginParams, LoginResult } from '@/api/account'
+import storage from 'store'
+import router from '@/router'
 
 const defaultState = {
   userInfo: {}
@@ -10,16 +12,28 @@ export const useAccountStore = defineStore('account', {
     return { ...defaultState }
   },
   actions: {
-    async Login() {
-      let params = {
-        imageCode: '',
-        password: '',
-        randomStr: '',
-        username: '',
-      }
-      await Login(params).then((res) => {
-        console.log(res)
-      })
+    setToken(params: LoginResult) {
+      storage.set('ACCESS_TOKEN', params.accessToken)
+      storage.set('REFRESH_TOKEN', params.refreshToken);
+    },
+    // 登陆
+    login(params: LoginParams) {
+      return new Promise((resolve, reject) => {
+        Login(params)
+          .then((res) => {
+            this.setToken(res);
+            router.push({ path: '/' });
+            resolve(res);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      });
+    },
+    // 退出登录
+    logout() {
+      storage.clearAll();
+      router.push({ name: 'Login' });
     }
   }
 })

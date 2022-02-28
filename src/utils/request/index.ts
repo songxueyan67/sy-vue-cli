@@ -1,6 +1,8 @@
 import Axios, { AxiosError } from 'axios'
 import storage from 'store';
 import { notification } from 'ant-design-vue'
+const router = useRouter();
+
 const { VITE_BASE_URL } = import.meta.env;
 const request = Axios.create({
   baseURL: VITE_BASE_URL as string,
@@ -15,7 +17,7 @@ const errorHandler = (error: AxiosError) => {
       error.message = '请求错误';
       break;
     case 401:
-      error.message = '未授权，请登录';
+      router.push({ name: 'Home' })
       break;
     case 403:
       error.message = '拒绝访问';
@@ -60,18 +62,20 @@ request.interceptors.request.use((response) => {
 
 // 后置拦截器（获取到响应时的拦截）
 request.interceptors.response.use((response) => {
-  let { code, msg } = response.data;
+  let dataAxios = response.data;
+  let { code, msg } = dataAxios;
   switch (code) {
     case 0:
-      return response.data
+      return dataAxios.data
     case 1:
+      notification.error({ message: msg });
+      throw Error(msg);
+    case 401:
       notification.error({ message: msg });
       throw Error(msg);
     default:
       return '不是正确的code';
   }
-}, (error) => {
-  console.log(error)
-})
+}, errorHandler)
 
 export default request;
