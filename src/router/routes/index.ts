@@ -1,12 +1,12 @@
 import { RouteRecordRaw } from 'vue-router';
 import Home from './home'
-
+import MainLayout from '@/layout/MainLayout/index.vue'
 const frameIn: RouteRecordRaw = {
   path: '/',
   redirect: '/home',
-  component: () => import('@/views/Home.vue'),
+  component: MainLayout,
   meta: { title: '首页' },
-  children: [Home]
+  children: [ Home ]
 }
 
 const frameOut = [
