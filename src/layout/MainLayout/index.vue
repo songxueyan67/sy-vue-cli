@@ -20,7 +20,7 @@ import NavMenu from './NavMenu.vue'
   height: 100%;
 
   .main {
-    height: calc(100vh - 56px);
+    height: calc(100vh - 80px);
     display: flex;
 
     .router-view {

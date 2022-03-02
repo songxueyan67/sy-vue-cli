@@ -6,7 +6,7 @@
 </script>
 <style scoped lang='scss'>
 .nav-menu {
-  width: 120px;
+  width: 220px;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
 }
