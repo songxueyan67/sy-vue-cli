@@ -1,9 +1,6 @@
-
 export const modelRef = reactive({
   username: "",
   password: "",
-  randomStr: "",
-  imageCode: "",
 })
 
 export const rulesRef = reactive({
@@ -19,10 +16,4 @@ export const rulesRef = reactive({
       message: '请输入密码'
     }
   ],
-  imageCode: [
-    {
-      required: true,
-      message: '请输入验证码'
-    }
-  ]
 })

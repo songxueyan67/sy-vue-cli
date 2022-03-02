@@ -7,7 +7,7 @@ const defaultState = {
   userInfo: {}
 }
 
-export const useAccountStore = defineStore('account', {
+const useAccountStore = defineStore('account', {
   state: () => {
     return { ...defaultState }
   },
@@ -37,3 +37,5 @@ export const useAccountStore = defineStore('account', {
     }
   }
 })
+
+export default useAccountStore;
