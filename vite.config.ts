@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import {createSvgIconsPlugin} from 'vite-plugin-svg-icons';
 import styleImport from 'vite-plugin-style-import';
 import AutoImport from 'unplugin-auto-import/vite'
 import Component from 'unplugin-vue-components/vite'
@@ -35,7 +36,13 @@ export default defineConfig({
     AutoImport({
       imports: ['vue', 'vue-router'],
       dts: 'src/types/auto-imports.d.ts'
-    })
+    }),
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹，地址可改
+      iconDirs: [resolve(process.cwd(), 'src/assets/svg')],
+      // 指定symbolId格式
+      symbolId: 'icon-[dir]-[name]',
+    }),
   ],
 
   server: {

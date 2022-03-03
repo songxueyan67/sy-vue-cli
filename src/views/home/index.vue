@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <svg-icon name='user' color='#FF0000' />
     <a-form>
       <a-form-item label="username" v-bind="validateInfos.username">
         <a-input v-model:value="modelRef.username" />
