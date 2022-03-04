@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <svg-icon name='user' color='#FF0000' />
+    <div style="background: rgba(0,0,0,0.5)">
+      <static-file src="images/API.png" />
+    </div>
     <a-form>
       <a-form-item label="username" v-bind="validateInfos.username">
         <a-input v-model:value="modelRef.username" />

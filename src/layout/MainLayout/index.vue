@@ -26,6 +26,7 @@ import NavMenu from './NavMenu.vue'
     .router-view {
       flex: 1;
       padding: 20px;
+      overflow-y: scroll;
     }
   }
 }
