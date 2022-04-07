@@ -1,2 +1,2 @@
 # sy-vue-cli
-vite-vue-ts
+vite-vue3-ts
