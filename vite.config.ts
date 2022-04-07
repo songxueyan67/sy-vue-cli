@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { viteMockServe } from 'vite-plugin-mock'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import styleImport from 'vite-plugin-style-import';
@@ -18,6 +19,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    VueSetupExtend(),
     Component({
       dts: false,  // 如果安装了 `typescript`，则默认启用
       extensions: ['vue', 'ts'], //
